@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hash Generator</title>
+  </head>
+  <body>
+    <header>Generate Hash</header>
+    <div id="container">
+      <form>
+        <input
+          type="text"
+          name="salt"
+          value="salty"
+          placeholder="Salt (optional)"
+        />
+        +
+        <input
+          type="text"
+          name="secret"
+          value="secrets"
+          placeholder="Secret"
+          required
+        />
+        <select name="algorithm"></select>
+        =
+        <button type="submit">Generate Hash</button>
+      </form>
+      <input type="text" name="output" readonly placeholder="Generated Hash" />
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
