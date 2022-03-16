@@ -8,31 +8,33 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h2>Hash Generator</h2>
-    <p>Hash Generator using a Nodejs API with Crypto library to leverage hashing algorithms.</p>
+    <h1 id="title">Hash Generator</h1>
+    <p  id="subtitle">Hash Generator using a Nodejs API with Crypto library to leverage hashing algorithms.</p>
     <div id="container">
       <form>
-        <div class="form-group">
-          <input 
-            type="checkbox"
-            name="randomSalt"
-            id="randomSalt"
-         />
-          <label for="randomSalt" title="Generates hash with a random salt provided by the server. The salt used will be set in the Salt input.">Generate Random Salt</label>
-        </div>
-        <div class="form-group">
+        <div class="form-group" style="align-items: center;">
           <input
             type="text"
             name="salt"
             placeholder="Salt (optional)"
-            style="width: 25%;"
+            style="flex-grow: 1;"
           />
+          <div class="checkbox-container">
+            <input
+              type="checkbox"
+              name="randomSalt"
+              id="randomSalt"
+           />
+            <label for="randomSalt" title="Generates hash with a random salt provided by the server. The salt used will be set in the Salt input.">Generate Random Salt</label>
+          </div>
+        </div>
+        <div class="form-group">
           <input
             type="text"
             name="secret"
             placeholder="Secret"
             required
-            style="width: 75%;"
+            style="width: 100%;"
           />
         </div>
         <div class="form-group col">
@@ -40,12 +42,14 @@
           <button class="success" type="submit">Generate Hash</button>
         </div>
       </form>
-      <textarea 
+      <input 
         type="text" 
         name="output"
         readonly
         id="hashOutput"
-      ></textarea>
+        placeholder=">"
+        title="click to copy hash"
+      />
       <div id="copyStatus"></div>
     </div>
     <footer>

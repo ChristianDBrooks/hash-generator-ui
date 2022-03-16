@@ -1,7 +1,7 @@
 const API_URL = "https://node-hash-generator-api.herokuapp.com"
 const form = document.querySelector("form");
 const algorithmSelect = document.querySelector('select[name="algorithm"]');
-const hashOutputEl = document.querySelector('textarea[name="output"');
+const hashOutputEl = document.querySelector('input[name="output"');
 const optionalSaltEl = document.querySelector('input[name="salt"]');
 const randomSaltEl = document.querySelector('input[name="randomSalt"]');
 const copyStatusEl = document.querySelector('#copyStatus');
@@ -72,11 +72,18 @@ form.addEventListener("submit", (event) => {
   handleSubmit(event);
 });
 
-hashOutputEl.onclick = function () {
-  this.select();
+const copyHash = () => {
+  if (!hashOutputEl.value) return;
+  hashOutputEl.select();
   document.execCommand("copy");
-  copyStatusEl.style.color = "green";
-  copyStatusEl.textContent = "COPIED TO CLIPBOARD!";
+  copyStatusEl.style.color = "#00b887";
+  copyStatusEl.textContent = "Copied to Clipboard!";
+}
+
+hashOutputEl.onclick = () => copyHash();
+hashOutputEl.onkeyup = (e) => {
+  console.log(e)
+  if (e.key === "Enter") copyHash();
 };
 
 randomSaltEl.onclick = () => {
@@ -103,11 +110,10 @@ function handleSubmit(event) {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       hashOutputEl.value = data.hash;
       optionalSaltEl.value = data.salt;
-      copyStatusEl.style.color = "black";
-      copyStatusEl.textContent = "CLICK HASH TO COPY";
+      copyStatusEl.style.color = "var(--p-color)";
+      copyStatusEl.textContent = "Click to Copy";
     });
 }
 
