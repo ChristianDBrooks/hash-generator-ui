@@ -1,3 +1,4 @@
+const API_URL = "https://node-hash-generator-api.herokuapp.com"
 const form = document.querySelector("form");
 const algorithmSelect = document.querySelector('select[name="algorithm"]');
 const hashOutputEl = document.querySelector('textarea[name="output"');
@@ -93,7 +94,7 @@ function handleSubmit(event) {
   const formData = new FormData(form);
   const urlEncodedData = new URLSearchParams(formData).toString();
 
-  fetch("http://localhost:6060/hash/create", {
+  fetch(API_URL + "/hash/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
