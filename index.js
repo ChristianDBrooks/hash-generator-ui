@@ -1,6 +1,9 @@
 const form = document.querySelector("form");
 const algorithmSelect = document.querySelector('select[name="algorithm"]');
-const hashOutputEl = document.querySelector('input[name="output"');
+const hashOutputEl = document.querySelector('textarea[name="output"');
+const optionalSaltEl = document.querySelector('input[name="salt"]');
+const randomSaltEl = document.querySelector('input[name="randomSalt"]');
+const copyStatusEl = document.querySelector('#copyStatus');
 const cryptoAlgorithms = [
   "RSA-MD4",
   "RSA-MD5",
@@ -71,7 +74,19 @@ form.addEventListener("submit", (event) => {
 hashOutputEl.onclick = function () {
   this.select();
   document.execCommand("copy");
+  copyStatusEl.style.color = "green";
+  copyStatusEl.textContent = "COPIED TO CLIPBOARD!";
 };
+
+randomSaltEl.onclick = () => {
+  const useRandomSalt = randomSaltEl.checked;
+  if (useRandomSalt) {
+    optionalSaltEl.setAttribute("readonly", "readonly");
+  } else {
+    optionalSaltEl.removeAttribute("readonly");
+    optionalSaltEl.value = "";
+  }
+}
 
 function handleSubmit(event) {
   const form = event.target;
@@ -89,6 +104,9 @@ function handleSubmit(event) {
     .then((data) => {
       console.log(data);
       hashOutputEl.value = data.hash;
+      optionalSaltEl.value = data.salt;
+      copyStatusEl.style.color = "black";
+      copyStatusEl.textContent = "CLICK HASH TO COPY";
     });
 }
 

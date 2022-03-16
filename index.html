@@ -5,30 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hash Generator</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header>Generate Hash</header>
+    <h2>Hash Generator</h2>
+    <p>Hash Generator using a Nodejs API with Crypto library to leverage hashing algorithms.</p>
     <div id="container">
       <form>
-        <input
-          type="text"
-          name="salt"
-          value="salty"
-          placeholder="Salt (optional)"
-        />
-        +
-        <input
-          type="text"
-          name="secret"
-          value="secrets"
-          placeholder="Secret"
-          required
-        />
-        <select name="algorithm"></select>
-        =
-        <button type="submit">Generate Hash</button>
+        <div class="form-group">
+          <input 
+            type="checkbox"
+            name="randomSalt"
+            id="randomSalt"
+         />
+          <label for="randomSalt" title="Generates hash with a random salt provided by the server. The salt used will be set in the Salt input.">Generate Random Salt</label>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="salt"
+            placeholder="Salt (optional)"
+            style="width: 25%;"
+          />
+          <input
+            type="text"
+            name="secret"
+            placeholder="Secret"
+            required
+            style="width: 75%;"
+          />
+        </div>
+        <div class="form-group col">
+          <select name="algorithm"></select>
+          <button class="success" type="submit">Generate Hash</button>
+        </div>
       </form>
-      <input type="text" name="output" readonly placeholder="Generated Hash" />
+      <textarea 
+        type="text" 
+        name="output"
+        readonly
+        id="hashOutput"
+      ></textarea>
+      <div id="copyStatus"></div>
     </div>
     <script src="index.js"></script>
   </body>
